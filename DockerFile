@@ -1,5 +1,5 @@
 # Use Eclipse Temurin Java 24 Early Access JDK
-FROM eclipse-temurin:24-jdk
+FROM eclipse-temurin:17-jdk
 
 # Set the working directory inside the container
 WORKDIR /app
