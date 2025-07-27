@@ -1,4 +1,4 @@
-# Use Eclipse Temurin Java 24 Early Access JDK
+# Use Eclipse Temurin Java 17 (or switch to 24 if needed)
 FROM eclipse-temurin:17-jdk
 
 # Set the working directory inside the container
@@ -8,11 +8,14 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-# Install Maven if it's not already included
+# Install Maven
 RUN apt-get update && apt-get install -y maven
 
-# Build the project
+# Build the JAR file
 RUN mvn clean package -DskipTests
 
-# Run the application (change the JAR name if needed)
-CMD ["java", "-jar", "target/demo-0.0.1-SNAPSHOT.jar"]
+# Expose port 8080 (optional, for documentation)
+EXPOSE 8080
+
+# Run the built JAR (dynamically pick the JAR)
+CMD bash -c "java -jar target/*.jar"
