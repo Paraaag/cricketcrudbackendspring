@@ -1,0 +1,18 @@
+# Use Eclipse Temurin Java 24 Early Access JDK
+FROM eclipse-temurin:24-jdk
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy Maven project files
+COPY pom.xml .
+COPY src ./src
+
+# Install Maven if it's not already included
+RUN apt-get update && apt-get install -y maven
+
+# Build the project
+RUN mvn clean package -DskipTests
+
+# Run the application (change the JAR name if needed)
+CMD ["java", "-jar", "target/demo-0.0.1-SNAPSHOT.jar"]
