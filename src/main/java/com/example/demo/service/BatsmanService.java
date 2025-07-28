@@ -65,4 +65,27 @@ public class BatsmanService {
         }
         batsmanRepository.deleteById(id);
     }
+
+    public Batsman patchBatsman(Long id, Batsman partialBatsman) {
+        Batsman existing = batsmanRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Batsman with id " + id + " not found"));
+    
+        if (partialBatsman.getBatsmanName() != null) {
+            existing.setBatsmanName(partialBatsman.getBatsmanName());
+        }
+    
+        if (partialBatsman.getBattingPosition() != null) {
+            existing.setBattingPosition(partialBatsman.getBattingPosition());
+        }
+    
+        if (partialBatsman.getTeam() != null && partialBatsman.getTeam().getTeamName() != null) {
+            String teamName = partialBatsman.getTeam().getTeamName();
+            Team team = teamRepository.findByTeamNameIgnoreCase(teamName.trim())
+                    .orElseThrow(() -> new ResourceNotFoundException("Team '" + teamName + "' not found"));
+            existing.setTeam(team);
+        }
+    
+        return batsmanRepository.save(existing);
+    }
+
 }
