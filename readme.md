@@ -1,8 +1,11 @@
 🏏 Spring Boot CRUD App: Batsman & Team Management
+This is a backend-only Spring Boot application that provides CRUD operations for managing Batsman and Team entities.
+✅ Deployed on Railway: https://lovely-vibrancy-production.up.railway.app
+🔗 Use the above URL to interact with the API endpoints via tools like Postman or cURL.
 
 A Spring Boot application to manage Batsmen and their Teams with full 
 CRUD operations, validation, error handling, and ready
-integration with MySQL or H2. This backend is designed for scalability,
+integration with both MySQL or H2. This backend is designed for scalability,
 cloud deployment, and enterprise-grade coding practices.
 
 
@@ -22,7 +25,6 @@ cloud deployment, and enterprise-grade coding practices.
 - Java 17+
 - Spring Boot 3+
 - Spring Web, Spring Data JPA, Validation
-- Lombok
 - MySQL / H2
 - Postman (API testing and documentation)
 
@@ -88,9 +90,9 @@ spring.h2.console.path=/h2-console
 → Visit: http://localhost:8080/h2-console
 
 MySQL:
-spring.datasource.url=jdbc:mysql://localhost:3306/cricketdb
+spring.datasource.url=jdbc:mysql://interchange.proxy.rlwy.net:53065/railway
 spring.datasource.username=root
-spring.datasource.password=yourpassword
+spring.datasource.password=AkQzvweLLwQhrOMgCUctQLuUvWSUCpPX
 spring.jpa.hibernate.ddl-auto=update
 
 🔧 Build & Run
@@ -116,18 +118,10 @@ pm.test("Status code is 200", function () {
   pm.response.to.have.status(200);
 });
 
-🚀 Ready for Deployment
-
-- Compatible with cloud environments (Railway, Render, AWS)
-- Add Dockerfile:
-FROM openjdk:17-jdk-slim
-COPY target/demo.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
 
 👨‍💻 Author
 Parag Yadav  
 Intern : Siemens (Team Mendix Cloud )  
 GitHub: https://github.com/Paraaag
 
-📄 License
-MIT License
+
