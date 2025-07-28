@@ -35,4 +35,10 @@ public class BatsmanController {
     public void delete(@PathVariable Long id) {
         batsmanService.deleteBatsman(id);
     }
+
+    @PatchMapping("/{id}")
+    public Batsman patch(@PathVariable Long id, @RequestBody Batsman partialBatsman) {
+    return batsmanService.patchBatsman(id, partialBatsman);
+    }
+
 }
